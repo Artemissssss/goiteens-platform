@@ -31,7 +31,7 @@ function index() {
         e.preventDefault();
         fetch(`/api/createRoom`, {
             method: 'POST',
-            body: JSON.stringify({"name":e.target[0].value,"material":e.target[1].value,"idRoom":e.target[2].value}),
+            body: JSON.stringify({"name":e.target[0].value,"material":e.target[1].value,"idRoom":e.target[2].value,"tasks":[]}),
             headers: {
               'Content-Type': 'application/json'
             }}).then(async (res)=>{const data = await res.json();setStatus(data.status)});
