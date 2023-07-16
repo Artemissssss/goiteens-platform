@@ -7,7 +7,6 @@ res.setHeader('Access-Control-Allow-Methods', 'POST');
 res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
     console.log(req.body)
     console.log(req)
-    if(req.method === "POST"){
         const data = req.body;
         if( data.login === process.env.NEXT_PUBLIC_ADMIN && data.password === process.env.NEXT_PUBLIC_ADMIN_PASSWORD){
             res.status(200).json([{status:1},{idRoom:undefined}])
@@ -27,7 +26,4 @@ res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
                 res.status(403).json([{status:0},{idRoom:undefined}])
             }
         }
-    }else{
-        res.status(405).json({message:"Це не для цього"})
-    }
 }
