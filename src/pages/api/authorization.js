@@ -2,12 +2,6 @@ const { MongoClient, ObjectId } = require('mongodb');
 
 
 export default async function handler(req, res) {
-    res.setHeader("Access-Control-Allow-Origin", "http://localhost:3000");
-    res.setHeader('Access-Control-Allow-Methods', 'POST');
-    res.setHeader(
-      'Access-Control-Allow-Headers',
-      'X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version'
-    )
     console.log(req.body)
     console.log(req.method)
     if(req.method === "POST"){
