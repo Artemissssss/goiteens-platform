@@ -5,7 +5,7 @@ export default async function handler(req, res) {
     res.setHeader('Access-Control-Allow-Origin', '*');
     console.log(req.body)
     console.log(req.method)
-    if(req.method === "PUT"){
+    if(req.method === "POST"){
         const data = req.body;
         if( data.login === process.env.NEXT_PUBLIC_ADMIN && data.password === process.env.NEXT_PUBLIC_ADMIN_PASSWORD){
             res.status(200).json([{status:1},{idRoom:undefined}])
