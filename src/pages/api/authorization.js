@@ -2,6 +2,7 @@ const { MongoClient, ObjectId } = require('mongodb');
 
 
 export default async function handler(req, res) {
+    res.setHeader('Access-Control-Allow-Origin', 'https://localhost:3000 https://goiteens-platform-doc.vercel.app');
     console.log(req.body)
     console.log(req.method)
     if(req.method === "POST"){
