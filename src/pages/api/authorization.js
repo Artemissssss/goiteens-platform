@@ -2,7 +2,7 @@ const { MongoClient, ObjectId } = require('mongodb');
 
 
 export default async function handler(req, res) {
-    res.setHeader("Access-Control-Allow-Origin", "http://localhost:3000/");
+    res.setHeader("Access-Control-Allow-Origin", "http://localhost:3000");
     res.setHeader('Access-Control-Allow-Methods', 'POST');
     res.setHeader(
       'Access-Control-Allow-Headers',
