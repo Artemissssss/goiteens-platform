@@ -1,17 +1,19 @@
 import { adminStatus } from "@/context/adminStatus";
 import { useRouter } from "next/router";
-import { useContext, useEffect } from "react";
-import { nanoid } from 'nanoid'
+import { useContext, useEffect, useState } from "react";
 import { idOfRoom } from "@/context/idOfRoom";
 
 function index() {
     const { status, setStatus } = useContext(adminStatus);
     const { roomID } = useContext(idOfRoom);
+    const [taskList, setTaskList] = useState([])
     const router = useRouter()
 
     useEffect(()=>{
         if(status !== 2){
           router.push('/authorization')
+        }else{
+            fetch(`/api/classroom/${roomID}`).then(async (res)=>{const data = await res.json();setTaskList(data.tasks)});
         }
       },[])
       useEffect(()=>{
@@ -50,6 +52,15 @@ function index() {
         <input type="number" placeholder="status" defaultValue="3" readOnly/>
         <button>Submit</button>
     </form>
+    {taskList.map((arr,i) => {return (
+        <>
+        <div key={i}>
+            <h3>{arr.login}</h3>
+            <p>{arr.task}</p>
+            <p>{arr.answer}</p>
+        </div>
+        </>
+    )})}
     </>
   )
 }
