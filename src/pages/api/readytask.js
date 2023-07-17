@@ -8,6 +8,7 @@ export default async function handler(req, res) {
         res.status(204).end();
     } else {
     if(req.method === "POST"){
+        
         const client = await MongoClient.connect(
             `mongodb+srv://${process.env.NEXT_PUBLIC_DATABASE_USER}:${process.env.NEXT_PUBLIC_DATABASE_PASSWORD}@${process.env.NEXT_PUBLIC_DATABASE}/?retryWrites=true&w=majority`,
             { useNewUrlParser: true, useUnifiedTopology: true }
@@ -18,9 +19,8 @@ export default async function handler(req, res) {
         const cursor = coll.find(filter);
         const result = await cursor.toArray();
         const data2 = [data.task, ...result[0].tasks];
-
         const tasks = data2 ? {"tasks": data2} : {}
-        coll.updateOne(
+        await coll.updateOne(
         {idRoom: data.idRoom},
             {
                 $set: { ...tasks},
@@ -28,8 +28,9 @@ export default async function handler(req, res) {
             }
         )
         await client.close();
-        res.status(200)
+        res.status(200).json("")
     }else{
         res.status(405).json({message:"Це не для цього"})
-    }}
+    }
+}
 }
