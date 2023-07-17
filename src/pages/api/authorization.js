@@ -2,7 +2,7 @@ const { MongoClient, ObjectId } = require('mongodb');
 
 
 export default async function handler(req, res) {
-    res.setHeader('Access-Control-Allow-Origin', 'https://localhost:3000 https://goiteens-platform-doc.vercel.app');
+    res.setHeader('Access-Control-Allow-Origin', 'https://goiteens-platform-doc.vercel.app');
       res.setHeader('Access-Control-Allow-Methods', 'GET, POST');
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
     console.log(req.body)
