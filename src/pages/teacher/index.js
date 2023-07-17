@@ -29,7 +29,7 @@ function index() {
             body: JSON.stringify({"login":e.target[0].value,"password":e.target[1].value, status:parseInt(e.target[2].value),"idRoom":roomID}),
             headers: {
               'Content-Type': 'application/json'
-            }}).then(async (res)=>{const data = await res.json();setStatus(data.status)});
+            }})
     }
     const taskMake = (e) =>{
         e.preventDefault();
@@ -38,7 +38,7 @@ function index() {
             body: JSON.stringify({"material":e.target[0].value,"idRoom":roomID}),
             headers: {
               'Content-Type': 'application/json'
-            }}).then(async (res)=>{const data = await res.json();setStatus(data.status)});
+            }})
     }
   return (
     <>
@@ -56,7 +56,7 @@ function index() {
         <>
         <div key={i}>
             <h3>{arr.login}</h3>
-            <p>{arr.task}</p>
+            <p>{arr.text}</p>
             <p>{arr.answer}</p>
         </div>
         </>

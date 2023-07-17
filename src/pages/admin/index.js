@@ -25,7 +25,7 @@ function index() {
             body: JSON.stringify({"login":e.target[0].value,"password":e.target[1].value, status:parseInt(e.target[2].value),"idRoom":e.target[3].value}),
             headers: {
               'Content-Type': 'application/json'
-            }}).then(async (res)=>{const data = await res.json();setStatus(data.status)});
+            }})
     }
     const createRoom = (e) =>{
         e.preventDefault();
@@ -34,7 +34,7 @@ function index() {
             body: JSON.stringify({"name":e.target[0].value,"material":e.target[1].value,"idRoom":e.target[2].value,"tasks":[]}),
             headers: {
               'Content-Type': 'application/json'
-            }}).then(async (res)=>{const data = await res.json();setStatus(data.status)});
+            }})
         e.target.reset();
     }
   return (

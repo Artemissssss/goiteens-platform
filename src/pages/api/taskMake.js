@@ -1,7 +1,6 @@
 const { MongoClient } = require('mongodb');
 
 export default async function handler(req, res) {
-    res.setHeader('Access-Control-Allow-Origin', '*');
     if(req.method === "POST"){
         const client = await MongoClient.connect(
             `mongodb+srv://${process.env.NEXT_PUBLIC_DATABASE_USER}:${process.env.NEXT_PUBLIC_DATABASE_PASSWORD}@${process.env.NEXT_PUBLIC_DATABASE}/?retryWrites=true&w=majority`,
@@ -10,7 +9,7 @@ export default async function handler(req, res) {
         const coll = client.db('goit-platform').collection('classrooms');
         const data = req.body;
         const material = data.material ? {"material": data.material} : {}
-        coll.updateOne(
+        await coll.updateOne(
         {idRoom: data.idRoom},
             {
                 $set: { ...material},
@@ -18,7 +17,7 @@ export default async function handler(req, res) {
             }
         )
         await client.close();
-        res.status(200)
+        res.status(200).json("")
     }else{
         res.status(405).json({message:"Це не для цього"})
     }
