@@ -35,6 +35,7 @@ function index() {
             headers: {
               'Content-Type': 'application/json'
             }}).then(async (res)=>{const data = await res.json();setStatus(data.status)});
+        e.target.reset();
     }
   return (
     <>
